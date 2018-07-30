@@ -1,0 +1,54 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id "org.flywaydb.flyway" version "5.0.2"
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.test'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 10
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-jooq')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile "com.zaxxer:HikariCP:2.4.5"
+	compile('org.flywaydb:flyway-core')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/test'
+	user = 'test'
+	password = 'test'
+	schemas = ['public']
+
+}
+
+task jooqGen(type: JavaExec, dependsOn: processResources) {
+	description 'Generates jOOQ sources for database'
+	main = "org.jooq.util.GenerationTool"
+	//classpath += fileTree(dir: 'lib', include: ['*.jar'])
+	classpath += files(sourceSets.main.runtimeClasspath)
+	//classpath += files("$buildDir/resources/main")
+	args = ["jooq-codegen.xml"]
+}
