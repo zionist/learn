@@ -21,6 +21,7 @@ public class DbTest {
 
 	@Test
 	public void selectWorks() {
+
 	    dslContext.selectFrom(TEST).fetch().forEach(r -> {
 	        System.out.println(r.getTestText());
         });
