@@ -13,6 +13,8 @@ hs_err_pid*
 *.iml
 out
 logs
+build
+.idea
 
 lagoon/.gradle
 front/static/
