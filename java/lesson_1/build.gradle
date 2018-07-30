@@ -1,6 +1,7 @@
 buildscript {
 	ext {
 		springBootVersion = '2.0.3.RELEASE'
+        jooqVersion = '3.10.7'
 	}
 	repositories {
 		mavenCentral()
@@ -11,7 +12,7 @@ buildscript {
 }
 
 plugins {
-	id "org.flywaydb.flyway" version "5.0.2"
+	id "org.flywaydb.flyway" version "5.1.4"
 }
 
 apply plugin: 'java'
@@ -30,9 +31,22 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jooq')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: "${springBootVersion}"
+    compile group: 'org.springframework', name: 'spring-aspects', version: '5.0.8.RELEASE'
+    compile "org.postgresql:postgresql:9.4-1200-jdbc41"
 	compile "com.zaxxer:HikariCP:2.4.5"
 	compile('org.flywaydb:flyway-core')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    // Logging
+    runtime 'ch.qos.logback:logback-classic:1.2.3'
+    testRuntime 'ch.qos.logback:logback-classic:1.2.3'
+    runtime 'org.codehaus.groovy:groovy-all:2.4.11'
+
+    // Jooq
+    compile "org.jooq:jooq:${jooqVersion}"
+    compile "org.jooq:jooq-codegen:${jooqVersion}"
+    compile "org.jooq:jooq-meta:${jooqVersion}"
 }
 
 
