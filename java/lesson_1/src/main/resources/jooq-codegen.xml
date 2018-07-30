@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration>
     <jdbc>
-        <url>jdbc:postgresql://localhost:5432/bitzlato</url>
+        <url>jdbc:postgresql://localhost:5432/test</url>
         <driver>org.postgresql.Driver</driver>
-        <user>bitzlato</user>
-        <password>bitzlato</password>
+        <user>test</user>
+        <password>test</password>
     </jdbc>
     <generator>
         <database>
@@ -56,7 +56,7 @@
         </database>
         <target>
             <directory>src/main/java</directory>
-            <packageName>com.github.bitzlato.back.jooq.generated</packageName>
+            <packageName>com.test.testproject.jooq.generated</packageName>
         </target>
     </generator>
 </configuration>
