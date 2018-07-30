@@ -34,6 +34,9 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: "${springBootVersion}"
     compile group: 'org.springframework', name: 'spring-aspects', version: '5.0.8.RELEASE'
     compile "org.postgresql:postgresql:9.4-1200-jdbc41"
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    compile group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.0'
+    compile group: 'javax.activation', name: 'activation', version: '1.1.1'
 	compile "com.zaxxer:HikariCP:2.4.5"
 	compile('org.flywaydb:flyway-core')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
